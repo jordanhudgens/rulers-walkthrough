@@ -1,8 +1,18 @@
 class QuotesController < Rulers::Controller
 
   def index
-    quotes = File.model.all
+    quotes = FileModel.all
     render :index, :quotes => quotes
+  end
+
+  def new_quote
+    attrs = {
+      "submitter" => "web user",
+      "quote" => "A picture is worth one k pixels",
+      "attribution" => "Me"
+    }
+    m = FileModel.create attrs
+    render :quote, :obj => m
   end
 
   def a_quote
